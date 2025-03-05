@@ -1,0 +1,43 @@
+<!-- views/index.handlebars -->
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>{{title}}</title>
+</head>
+<body>
+  <h1>Welcome to the {{pageName}}</h1>
+
+  <!-- Simple chat form -->
+  <form id="chatForm">
+    <label for="message">Your question or prompt:</label><br/>
+    <textarea id="message" name="message" rows="5" cols="50"></textarea>
+    <br/>
+    <button type="submit">Send</button>
+  </form>
+
+  <h2>AI DM Response:</h2>
+  <div id="aiResponse"></div>
+
+  <script>
+    document.getElementById('chatForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      // Get the user's message
+      const message = document.getElementById('message').value;
+
+      // Send the message to our /chat endpoint
+      const response = await fetch('/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message }),
+      });
+
+      // Get the response from the server
+      const data = await response.json();
+
+      // Display it in the aiResponse div
+      document.getElementById('aiResponse').innerText = data.assistantMessage;
+    });
+  </script>
+</body>
+</html>

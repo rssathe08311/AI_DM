@@ -1,0 +1,28 @@
+{
+  "name": "ai_dm",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./server/app.js",
+    "test": "echo \"No Tests\"",
+    "nodemon": "nodemon ./server/app.js"
+  },
+  "author": "Reva Sathe",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "eslint": "^8.57.1",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-plugin-import": "^2.31.0",
+    "nodemon": "^3.1.9"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.3",
+    "compression": "^1.7.4",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "express-handlebars": "^8.0.1",
+    "openai": "^3.2.1",
+    "serve-favicon": "^2.5.0"
+  }
+}
