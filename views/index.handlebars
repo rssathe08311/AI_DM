@@ -2,42 +2,78 @@
 <html lang="en">
 <head>
   <meta charset="utf-8"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Aubrey&family=MedievalSharp&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/styles/style.css" />
+
   <title>{{title}}</title>
 </head>
 <body>
-  <h1>Welcome to the {{pageName}}</h1>
+  <h1>Welcome to a New Adventure</h1>
 
-  <!-- Simple chat form -->
-  <form id="chatForm">
-    <label for="message">Your question or prompt:</label><br/>
-    <textarea id="message" name="message" rows="5" cols="50"></textarea>
-    <br/>
-    <button type="submit">Send</button>
-  </form>
+  <p>To interact with the story type out your actions in the chatbar</p>
+  <p>To see environments/characters simply type "show me" into the chatbar</p>
 
-  <h2>AI DM Response:</h2>
-  <div id="aiResponse"></div>
+  <!-- ======================= CHARACTER CREATION ======================= -->
+  <div id="charCreationContainer" >
+    <h2>Create Your Character</h2>
+    <form id="charForm">
+      <label for="charName">Character Name:</label><br/>
+      <input type="text" id="charName" name="charName" required/><br/><br/>
 
-  <script>
-    document.getElementById('chatForm').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      
-      // Get the user's message
-      const message = document.getElementById('message').value;
+      <label for="charRace">Race:</label><br/>
+      <select id="charRace" name="charRace" required>
+        <option value="">--Select a Race--</option>
+        <option value="Human">Human</option>
+        <option value="Elf">Elf</option>
+        <option value="Dwarf">Dwarf</option>
+        <option value="Orc">Orc</option>
+        <option value="Halfling">Halfling</option>
+        <option value="Tiefling">Tiefling</option>
+      </select><br/><br/>
 
-      // Send the message to our /chat endpoint
-      const response = await fetch('/chat', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message }),
-      });
+      <label for="charClass">Class:</label><br/>
+      <select id="charClass" name="charClass" required>
+        <option value="">--Select a Class--</option>
+        <option value="Fighter">Fighter</option>
+        <option value="Rogue">Rogue</option>
+        <option value="Wizard">Wizard</option>
+        <option value="Cleric">Cleric</option>
+        <option value="Ranger">Ranger</option>
+        <option value="Bard">Bard</option>
+      </select><br/><br/>
 
-      // Get the response from the server
-      const data = await response.json();
+      <label for="adventureType">Adventure Type:</label><br/>
+      <select id="adventureType" name="adventureType">
+        <option value="Fantasy">Fantasy</option>
+        <option value="Sci-Fi">Sci-Fi</option>
+        <option value="Mystery">Mystery</option>
+        <option value="Horror">Horror</option>
+      </select><br/><br/>
 
-      // Display it in the aiResponse div
-      document.getElementById('aiResponse').innerText = data.assistantMessage;
-    });
-  </script>
+      <button type="submit">Start Adventure</button>
+    </form>
+  </div>
+
+  <!-- ======================= CHAT UI (initially hidden) ======================= -->
+  <div id="chatContainer" style="display:none;">
+    <h2>Adventure Chat</h2>
+
+    <!-- Conversation window -->
+    <div id="conversation" >
+      <!-- We'll dynamically append messages here -->
+    </div>
+
+    <!-- Chat input form -->
+    <form id="chatForm">
+      <label for="message">Action/Speech:</label><br/>
+      <input type="text" id="message" name="message" />
+      <button type="submit">Send</button>
+    </form>
+  </div>
+
+  <script src="/src/main.js"></script>
 </body>
 </html>

@@ -1,0 +1,162 @@
+/* Global Reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Dark background, edgy font, bright accent color */
+  body {
+    font-family: "MedievalSharp", cursive;
+    background-color: #1a1a1a; /* dark grey/black */
+    color: #ffffff;
+    padding: 1rem;
+  }
+
+  /* Main Title */
+  h1 {
+    color: #b928f2; /* neon magenta/purple accent */
+    font-weight: 600;
+    font-size: 2rem;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    letter-spacing: 1px;
+  }
+
+  /* Secondary Titles */
+  h2 {
+    color: #c71fe8; /* a slightly different neon purple hue */
+    font-weight: 600;
+    font-size: 1.3rem;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    letter-spacing: 1px;
+  }
+
+  h1, h2 {
+    text-align: center;
+  }
+
+  /* Paragraph styling */
+  p {
+    line-height: 1.5;
+    margin-bottom: 1rem;
+  }
+
+  #chatContainer {
+    display: none; 
+    margin: 0 auto; 
+    max-width: 800px;
+  }
+
+
+  /* Panels for character creation and chat - dark, with neon border and subtle glow */
+  #charCreationContainer,
+  #chatContainer {
+    background-color: #2c2c2c;
+    border: 1px solid #3e3e3e;
+    border-radius: 6px;
+    box-shadow: 0 0 10px rgba(240, 36, 186, 0.2); /* neon-ish glow */
+    padding: 1.5rem;
+    max-width: 800px;
+    margin-bottom: 2rem;
+    margin: 0 auto 2rem;
+  }
+
+  /* The conversation box with a slightly lighter background, 
+     neon border, and scrolling area */
+  #conversation {
+    background-color: #262626;
+    border: 1px solid #3e3e3e;
+    border-radius: 6px;
+    padding: 1rem;
+    max-height: 500px;
+    overflow-y: auto;
+    margin-bottom: 1rem;
+  }
+
+  /* Labels for forms - neon accent and uppercase */
+  label {
+    display: block;
+    margin: 0.5rem 0 0.25rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #c71fe8;
+  }
+
+  /* Inputs, selects, textarea - dark background, subtle border, neon glow on focus */
+  input[type="text"],
+  select,
+  textarea {
+    width: 100%;
+    padding: 0.5rem;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.95rem;
+    background-color: #333;
+    color: #f0f0f0;
+    border: 1px solid #3e3e3e;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    outline: none;
+  }
+  input[type="text"]:focus,
+  select:focus,
+  textarea:focus {
+    border-color: #f228bb;
+    box-shadow: 0 0 5px rgba(242, 40, 187, 0.5);
+  }
+
+  /* Buttons: edgy neon gradient, glow on hover */
+  button {
+    background: linear-gradient(45deg, #f228bb, #c71fe8);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  button:hover {
+    box-shadow: 0 0 8px rgba(242, 40, 187, 0.8), 0 0 10px rgba(199, 31, 232, 0.6);
+  }
+
+  /* Chat message alignment & styling */
+  .system-message {
+    font-size: 0.85rem;
+    font-style: italic;
+    color: #888;
+    margin-bottom: 0.5rem;
+  }
+  .user-message {
+    font-size: 14pt;
+    font-family: "Aubrey", system-ui;
+    text-align: right;
+    margin-bottom: 0.5rem;
+    font-weight: 400;
+    color: #efefef;
+  }
+  .assistant-message {
+    font-size: 14pt;
+    font-family: "Aubrey", system-ui;
+    background-color: #333;
+    color: #efefef;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    border-radius: 4px;
+    position: relative;
+    box-shadow: inset 0 0 3px rgba(0,0,0,0.2);
+  }
+
+  /* Image styling in chat: slight border, neon highlight */
+  #conversation img {
+    max-width: 100%;
+    border: 2px solid #f228bb;
+    border-radius: 6px;
+    margin-top: 0.5rem;
+    box-shadow: 0 0 10px rgba(242, 40, 187, 0.3);
+  }
