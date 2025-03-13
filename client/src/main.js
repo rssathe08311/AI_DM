@@ -41,6 +41,59 @@ document.getElementById('charForm').addEventListener('submit', async (e) => {
   renderConversation();
 });
 
+/*********************************************************
+ * Audio Interaction
+ *********************************************************/
+const audioElement = document.querySelector('audio');
+let audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+let sourceNode = audioCtx.createMediaElementSource(audioElement);
+sourceNode.connect(audioCtx.destination);
+
+// List of audio files in order
+//due to udio daily limit only 6
+const audioFiles = [
+    "/audio/song1.mp3",
+    "/audio/song2.mp3",
+    "/audio/song3.mp3",
+    "/audio/song4.mp3",
+    "/audio/song5.mp3",
+    "/audio/song6.mp3"
+];
+
+let currentTrack = 0;
+let audioStarted = false;
+
+// Function to start playback
+function startAudioPlayback() {
+    if (!audioStarted) { // Only start once
+        audioElement.src = audioFiles[currentTrack]; // Set the first track
+        audioElement.play().then(() => {
+            console.log("Audio started playing");
+        }).catch(error => {
+            console.log("Autoplay prevented: User interaction needed", error);
+        });
+        audioStarted = true;
+    }
+}
+
+// Automatically play the next track when the current one ends
+audioElement.onended = () => {
+    currentTrack = (currentTrack + 1) % audioFiles.length; // Loop back to first track after last one
+    audioElement.src = audioFiles[currentTrack]; // Change audio source
+    audioElement.play();
+};
+
+// Resume AudioContext if it's suspended (Chrome autoplay fix)
+audioElement.onplay = () => {
+    if (audioCtx.state === "suspended") {
+        audioCtx.resume();
+    }
+};
+
+// Listen for **any user interaction** to start playback
+window.addEventListener("click", startAudioPlayback);
+window.addEventListener("keydown", startAudioPlayback);
 
 /*********************************************************
  *  2) Render Conversation
@@ -104,7 +157,7 @@ document.getElementById('chatForm').addEventListener('submit', async (e) => {
     // We'll ask the LLM to "convert the last DM message into a short image prompt"
     const summarizeRequest = {
       role: 'user',
-      content: `Please convert the following scene description into a concise image prompt for an art generator: "${lastAssistantMsg.content}"`
+      content: `Using this format Description: and then the prompt, Please convert the following scene description into a concise image prompt for an art generator: "${lastAssistantMsg.content}"`
     };
 
     // Log the user request to the console (instead of showing in chat)

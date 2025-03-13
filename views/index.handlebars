@@ -13,8 +13,6 @@
 <body>
   <h1>Welcome to a New Adventure</h1>
 
-  <p>To interact with the story type out your actions in the chatbar</p>
-  <p>To see environments/characters simply type "show me" into the chatbar</p>
 
   <!-- ======================= CHARACTER CREATION ======================= -->
   <div id="charCreationContainer" >
@@ -60,6 +58,16 @@
   <!-- ======================= CHAT UI (initially hidden) ======================= -->
   <div id="chatContainer" style="display:none;">
     <h2>Adventure Chat</h2>
+    <ul>
+      <p>Instructions</p>
+      <li>To interact with the story type out your actions in the chatbox</li>
+      <li>Audio controls are present in the play bar below</li>
+      <li>To see environments/characters simply type <bold>"show me"</bold> into the chatbar</li>
+    </ul>
+  
+
+    <!-- Audio component here -->
+    <audio controls src="/audio/song1.mp3"></audio>
 
     <!-- Conversation window -->
     <div id="conversation" >
@@ -73,6 +81,11 @@
       <button type="submit">Send</button>
     </form>
   </div>
+
+  <footer>
+    <p style="text-align: center;">This project utilizes the OpenAI API for text and image generation and Udio for audio generation.</p>
+    <p style="text-align: center;">Reva Sathe 2025</p>
+  </footer>
 
   <script src="/src/main.js"></script>
 </body>
